@@ -30,5 +30,15 @@ class sobrevivente(models.Model):
 class inventario(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     id_sobrevivente = models.ForeignKey('sobrevivente', on_delete=models.CASCADE)
-    item = models.CharField(max_length=15)
+    AGUA = "Água"
+    ALIMENTACAO = "Alimentação"
+    MEDICACAO = "Medicação"
+    MUNICAO = "Munição"
+    ITEM_CHOICES = [
+       (AGUA,"Água"),
+       (ALIMENTACAO, "Alimentação"),
+       (MEDICACAO, "Medicação"),
+       (MUNICAO, "Munição")
+    ]
+    item = models.CharField(max_length=15, choices=ITEM_CHOICES)
     quantidade_item = models.PositiveIntegerField()
