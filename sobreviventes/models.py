@@ -26,3 +26,9 @@ class sobrevivente(models.Model):
     # longitude).
     # Um sobrevivente também possui um inventário de recursos de sua própria
     # propriedade (que você precisa declarar quando do registro do sobrevivente).
+
+class inventario(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    id_sobrevivente = models.ForeignKey('sobrevivente', on_delete=models.CASCADE)
+    item = models.CharField(max_length=15)
+    quantidade_item = models.PositiveIntegerField()
